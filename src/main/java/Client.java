@@ -2,26 +2,27 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Client {
-    private static final int PORT = 32768;
-    private static final String HOST = "127.0.0.1";
+    private static final int PORT = 8080;
+    private static final String HOST = "Alexeys-Mac-mini.local";
 
 
     public static void main(String[] args) {
 
         try (Socket clientSocket = new Socket(HOST, PORT);
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
-            System.out.println("Client socket initialized");
-            InetAddress inetAddress = InetAddress.getLocalHost();
+             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream())))
+        {
+            String name = clientSocket.getInetAddress().getHostName();
+//            System.out.println(clientSocket.getPort());
+//            System.out.println(clientSocket.getLocalPort());
 
-            out.println(inetAddress.getHostName());
-          //  out.println(address);
-            System.out.println(in.readLine());
+            out.println(name);
+
+           System.out.println(in.readLine());
 
         } catch (UnknownHostException e) {
                 e.printStackTrace();
