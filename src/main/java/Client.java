@@ -14,20 +14,16 @@ public class Client {
 
         try (Socket clientSocket = new Socket(HOST, PORT);
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream())))
-        {
+             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
             String name = clientSocket.getInetAddress().getHostName();
-//            System.out.println(clientSocket.getPort());
-//            System.out.println(clientSocket.getLocalPort());
-
             out.println(name);
 
-           System.out.println(in.readLine());
+            System.out.println(in.readLine());
 
         } catch (UnknownHostException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         } catch (IOException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }
